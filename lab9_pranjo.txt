@@ -1,0 +1,38 @@
+
+PLAY [Configuration tasks for OPS445] ******************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [pranjo]
+
+TASK [Update Apache (httpd)] ***************************************************
+ok: [pranjo]
+
+TASK [EPEL repository Installation] ********************************************
+ok: [pranjo]
+
+TASK [Remove 'tree' package] ***************************************************
+ok: [pranjo]
+
+TASK [Set the hostname] ********************************************************
+ok: [pranjo]
+
+TASK [Create new user] *********************************************************
+ok: [pranjo]
+
+TASK [Copy SSH public key] *****************************************************
+ok: [pranjo]
+
+TASK [Directory Structure Setup] ***********************************************
+ok: [pranjo] => (item=1)
+ok: [pranjo] => (item=2)
+ok: [pranjo] => (item=3)
+ok: [pranjo] => (item=4)
+ok: [pranjo] => (item=5)
+ok: [pranjo] => (item=6)
+ok: [pranjo] => (item=7)
+ok: [pranjo] => (item=8)
+ok: [pranjo] => (item=9)
+
+PLAY RECAP *********************************************************************
+pranjo                     : ok=8    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

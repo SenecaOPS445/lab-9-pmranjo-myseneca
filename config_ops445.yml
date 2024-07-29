@@ -1,0 +1,47 @@
+---
+- name: Configuration tasks for OPS445
+  hosts: all
+  become: yes
+  vars:
+    seneca_id: "pranjo"
+
+  tasks:
+    - name: Update Apache (httpd)
+      yum:
+        name: httpd
+        state: latest
+
+    - name: EPEL repository Installation
+      yum:
+        name: epel-release
+        state: present
+
+    - name: Remove 'tree' package
+      yum:
+        name: tree
+        state: absent
+
+    - name: Set the hostname
+      hostname:
+        name: "{{ seneca_id }}"
+
+    - name: Create new user
+      user:
+        name: "{{ seneca_id }}"
+        state: present
+        groups: wheel
+
+    - name: Copy SSH public key
+      authorized_key:
+        user: "{{ seneca_id }}"
+        state: present
+        key: "{{ lookup('file', '~/.ssh/id_ed25519.pub') }}"
+
+    - name: Directory Structure Setup
+      file:
+        path: "/home/{{ seneca_id }}/ops445/lab{{ item }}"
+        state: directory
+        owner: "{{ seneca_id }}"
+        group: "{{ seneca_id }}"
+        mode: '0755'
+      loop: "{{ range(1, 10) | list }}"
